@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,5 +17,145 @@
             <a href="/seasons/winter/">Winter fruits</a>
         </nav>
     </header>
+    <main>
+        <section class="section-introduction">
+            <div class="introduction-content">
+                <h2>Learn more about fruits</h2>
+                <p>This website is about fruits, and it's about nutrition, health, and wellness. You will learn about the different types of fruits.</p>
+                <button type="button">Sign up</button>
+            </div>
+            <div class="introduction-image">
+                <img src="./resources/images/store.jpeg" alt="A japanese fruit store">
+            </div>
+        </section>
+        <section class="section-info">
+            <h3 class="season-title">Must try autumn fruits:</h3>
+            <div class="info-images">
+                <div class="image-box">
+                    <img class="image1">
+                    <span class="span1"></span>
+                </div>
+                <div class="image-box">
+                    <img class="image2">
+                    <span class="span2"></span>
+                </div>
+                <div class="image-box">
+                    <img class="image3">
+                    <span class="span3"></span>
+                </div>
+                <div class="image-box">
+                    <img class="image4">
+                    <span class="span4"></span>
+                </div>
+            </div>
+        </section>
+        <section class="section-quote">
+            <p class="quote"></p>
+            <span class="autor"></span>
+        </section>
+        <section class="section-action">
+            <div class="action">
+                <div class="action-text">
+                    <h4>Fruits are good! Join us!</h4>
+                    <p>Sign up to receive the latest news and updates about fruits and vegetables!</p>
+                </div>
+                <button class="action-button">Sign up</button>
+            </div>
+        </section>
+        <footer>
+            <p>Copyright © devninjahero 2025 {Odin Project}</p>
+        </footer>
+    </main>
+
+    <script>
+    const seasonTitle = document.querySelector('.season-title')
+    seasonTitle.textContent = `Must try ${whatSeason()} fruits:`
+
+    const image1=document.querySelector('.image1')
+    const span1=document.querySelector('.span1')
+    const image2=document.querySelector('.image2')
+    const span2=document.querySelector('.span2')
+    const image3=document.querySelector('.image3')
+    const span3=document.querySelector('.span3')
+    const image4=document.querySelector('.image4')
+    const span4=document.querySelector('.span4')
+
+    if (whatSeason()=='winter') {
+        image1.src='./resources/images/clementine.jpg'
+        span1.textContent='clementine'
+        image2.src='./resources/images/kiwi.jpg'
+        span2.textContent='kiwi'
+        image3.src='./resources/images/pomegranate.jpg'
+        span3.textContent='pomegranate'
+        image4.src='./resources/images/apple.jpg'
+        span4.textContent='apple'
+    } else if (whatSeason()=='spring') {
+        image1.src='./resources/images/strawberry.jpg'
+        span1.textContent='strawberry'
+        image2.src='./resources/images/cherry.jpg'
+        span2.textContent='cherry' 
+        image3.src='./resources/images/medlar.jpg'
+        span3.textContent='medlar'
+        image4.src='./resources/images/apricot.jpg'
+        span4.textContent='apricot'
+    } else if (whatSeason()=='summer') {
+        image1.src='./resources/images/peach.jpg'
+        span1.textContent='peach'
+        image2.src='./resources/images/blueberry.jpg'
+        span2.textContent='blueberry'
+        image3.src='./resources/images/cantaloupe.jpg'
+        span3.textContent='cantaloupe'
+        image4.src='./resources/images/watermelon.jpg'
+    } else {
+        image1.src='./resources/images/pear.jpg'
+        span1.textContent='pear'
+        image2.src='./resources/images/kaki.jpg'
+        span2.textContent='kaki'
+        image3.src='./resources/images/fig.jpg'
+        span3.textContent='fig'
+        image4.src='./resources/images/grape.jpg'
+        span4.textContent='grape'
+    }
+
+    const allquote=["I submit that scientists have not yet explored the hidden possibilities of the innumerable seeds, leaves and fruits for giving the fullest possible nutrition to mankind.",
+        "Autumn is the mellower season, and what we lose in flowers we more than gain in fruits.",
+        "An apple a day keeps the doctor away.",
+        "A table, a chair, a bowl of fruit and a violin; what else does a man need to be happy?",
+        "Fruits that blossom first will first be ripe."]
+
+    const allautor=["-Mahatma Gandhi",
+        "-Samuel Butler",
+        "-Benjamin Franklin",
+        "-Albert Einstein",
+        "-William Shakespeare"]
+
+    const rand = Math.floor(Math.random() * 4);
+
+    const quote=document.querySelector('.quote')
+    quote.textContent=allquote[rand]
+    const autor=document.querySelector('.autor')
+    autor.textContent=allautor[rand]
+
+    function whatSeason() {
+        const getSeason = d => Math.floor((d.getMonth() / 12 * 4)) % 4
+        if(whatHemisphere()=='N') {
+            return ['winter', 'spring', 'summer', 'autumn'][getSeason(new Date())]
+        } else {
+            return ['summer', 'awinter', 'spring'][getSeason(new Date())]
+        }
+    }
+
+    function whatHemisphere() {
+        let y = new Date()
+        if (y.getTimezoneOffset==undefined) return null
+        y = y.getFullYear()
+        let jan = -(new Date(y, 0, 1, 0, 0, 0, 0).getTimezoneOffset())
+        let jul = -(new Date(y, 6, 1, 0, 0, 0, 0).getTimezoneOffset())
+        let diff = jan - jul
+        if (diff <  0) return 'N'
+        if (diff >  0) return 'S'
+        return null
+    }
+    </script>
 </body>
 </html>
